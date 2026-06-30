@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: visionbridge_backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./database:/app/database
+      - ./known_faces:/app/known_faces
+      - ./models:/app/models
+    # On Linux systems, this allows container access to USB camera device
+    devices:
+      - "/dev/video0:/dev/video0"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: visionbridge_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: visionbridge_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
