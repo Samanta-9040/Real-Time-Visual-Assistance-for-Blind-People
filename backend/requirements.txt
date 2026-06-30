@@ -1,0 +1,35 @@
+flask
+flask-socketio
+flask-cors
+flask-sqlalchemy
+python-socketio
+eventlet
+
+# Computer Vision
+opencv-python
+ultralytics
+easyocr
+pytesseract
+
+# AI Models
+transformers
+torch
+torchvision
+timm
+Pillow
+numpy
+
+# Face Recognition
+face-recognition
+# dlib (Note: May require cmake and visual studio C++ build tools on Windows)
+# If installation fails, code will fall back to simulated AI mode automatically.
+
+# Audio
+pyttsx3
+gTTS
+pygame
+
+# Utilities
+python-dotenv
+gunicorn
+psutil
